@@ -1,0 +1,54 @@
+﻿@model IEnumerable<aluguel.Models.Item>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Meus Itens</h1>
+
+<p>
+    <a asp-action="Create">Criar novo</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.nmitem)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.dsitem)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.snativo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.imagem1)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.nmitem)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.dsitem)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.snativo)
+            </td>
+            <td>
+                <img src="~/imagens/@item.imagem1" class="border" width="100" height="100" asp-append-version="true">
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.id">Editar</a> |
+                <a asp-action="Details" asp-route-id="@item.id">Detalhes</a> |
+                <a asp-action="Delete" asp-route-id="@item.id">Excluir</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

@@ -1,0 +1,11 @@
+{
+  "dependencies": {
+    "mssql2": {
+      "serviceConnectorResourceId": "/subscriptions/[parameters('subscriptionId')]/resourcegroups/[parameters('resourceGroupName')]/providers/Microsoft.Web/sites/aluguel/providers/Microsoft.ServiceLinker/linkers/rentall.database.windows.net_6130DD53C6",
+      "secretStore": "AzureAppSettings",
+      "resourceId": "/subscriptions/[parameters('subscriptionId')]/resourceGroups/[parameters('resourceGroupName')]/providers/Microsoft.Sql/servers/rentall/databases/aluguel",
+      "type": "mssql.azure",
+      "connectionId": "rentall.database.windows.net"
+    }
+  }
+}
