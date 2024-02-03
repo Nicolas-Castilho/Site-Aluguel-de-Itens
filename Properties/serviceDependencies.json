@@ -1,13 +1,17 @@
 {
   "dependencies": {
+    "mssql2": {
+      "type": "mssql",
+      "connectionId": "SQLServer"
+    },
+    "mssql3": {
+      "type": "mssql",
+      "connectionId": "AzureDataBase",
+      "dynamicId": null
+    },
     "mssql1": {
       "type": "mssql",
       "connectionId": "ConnectionStrings:ApplicationDbContextConnection",
-      "dynamicId": null
-    },
-    "mssql2": {
-      "type": "mssql",
-      "connectionId": "rentall.database.windows.net",
       "dynamicId": null
     }
   }

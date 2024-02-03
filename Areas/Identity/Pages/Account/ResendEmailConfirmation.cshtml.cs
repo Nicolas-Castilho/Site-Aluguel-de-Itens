@@ -76,9 +76,8 @@ namespace aluguel.Areas.Identity.Pages.Account
                 values: new { userId = userId, code = code },
                 protocol: Request.Scheme);
             await _emailSender.SendEmailAsync(
-                Input.Email,
-                "Confirm your email",
-                $"Confirme sua conta <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicando aqui</a>.");
+                Input.Email,"Valide Sua Conta",
+                $"Valide sua conta RentAll clicando <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>NESTE LINK</a>.");
 
             ModelState.AddModelError(string.Empty, "Vereficação enviada. olhe seu email ou caixa de spam.");
             return Page();

@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿
+
+using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 using System.Net;
 using aluguel.Models;
@@ -39,7 +41,7 @@ namespace aluguel.Controllers
                 home = home.Where(a => a.item.nmitem.Contains(searchString));
             }
 
-            int pageSize = 3;
+            int pageSize = 6;
             int pageNumber = page ?? 1;
 
             var model = await home.ToPagedListAsync(pageNumber, pageSize);
@@ -47,6 +49,30 @@ namespace aluguel.Controllers
 
             return View(model);
         }
+
+        //public async Task<IActionResult> Index(string searchString, int? page)
+        //{
+        //    var userId = User.Identity.IsAuthenticated
+        //        ? HttpContext.User.FindFirst(ClaimTypes.NameIdentifier).Value
+        //        : null;
+
+        //    var home = _context.Anuncios
+        //        .Include(a => a.Cidade)
+        //        .Where(a => userId == null || a.iduser != userId);
+
+        //    if (!string.IsNullOrEmpty(searchString))
+        //    {
+        //        home = home.Where(a => a.item.nmitem.Contains(searchString));
+        //    }
+
+        //    int pageSize = 6;
+        //    int pageNumber = page ?? 1;
+
+        //    var model = await home.ToPagedListAsync(pageNumber, pageSize);
+        //    ViewData["CurrentFilter"] = searchString;
+
+        //    return View(model);
+        //}
 
         public async Task<IActionResult> VideoGame(string searchString, int? page)
         {

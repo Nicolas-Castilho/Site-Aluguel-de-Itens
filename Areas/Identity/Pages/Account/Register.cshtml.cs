@@ -65,13 +65,15 @@ namespace aluguel.Areas.Identity.Pages.Account
         /// </summary>
         public class InputModel
         {
-            [Required]
-            [StringLength(100, ErrorMessage = "O campo nome deve ter no máximo 100 caractéres.")]
+            [Required(ErrorMessage = "O campo Nome é obrigatório.")]
+            [StringLength(50, ErrorMessage = "O campo Nome não pode ter mais de 50 caracteres.")]
+            [RegularExpression(@"^[a-zA-ZÀ-ú\s]*$", ErrorMessage = "O campo Nome deve conter apenas letras.")]
             [Display(Name = "Nome")]
             public string FirstName { get; set; }
 
-            [Required]
-            [StringLength(100, ErrorMessage = "O campo sobrenome deve ter no máximo 100 caractéres.")]
+            [Required(ErrorMessage = "O campo Sobrenome é obrigatório.")]
+            [StringLength(50, ErrorMessage = "O campo Sobrenome não pode ter mais de 50 caracteres.")]
+            [RegularExpression(@"^[a-zA-ZÀ-ú\s]*$", ErrorMessage = "O campo Sobrenome deve conter apenas letras.")]
             [Display(Name = "Sobrenome")]
             public string LastName { get; set; }
 
@@ -79,18 +81,20 @@ namespace aluguel.Areas.Identity.Pages.Account
             ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
             ///     directly from your code. This API may change or be removed in future releases.
             /// </summary>
-            [Required]
-            [EmailAddress]
-            [Display(Name = "Email")]
+            [Required(ErrorMessage = "O e-mail é obrigatório.")]
+            [EmailAddress(ErrorMessage = "Insira um endereço de e-mail válido.")]
+            [StringLength(100, ErrorMessage = "O e-mail não pode exceder {1} caracteres.")]
+            [RegularExpression(@"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$", ErrorMessage = "Formato de e-mail inválido.")]
             public string Email { get; set; }
 
             /// <summary>
             ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
             ///     directly from your code. This API may change or be removed in future releases.
             /// </summary>
-            [Required]
-            [StringLength(100, ErrorMessage = "A {0} deve ter ao menos {2} e no máximo {1} caractéres.", MinimumLength = 6)]
+            [Required(ErrorMessage = "A senha é obrigatória.")]
+            [StringLength(100, MinimumLength = 8, ErrorMessage = "A senha deve ter pelo menos {2} caracteres.")]
             [DataType(DataType.Password)]
+            [RegularExpression(@"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^\da-zA-Z]).{8,}$", ErrorMessage = "A senha deve conter pelo menos uma letra maiúscula, uma letra minúscula, um número e um caractere especial.")]
             [Display(Name = "Senha")]
             public string Password { get; set; }
 
@@ -98,9 +102,12 @@ namespace aluguel.Areas.Identity.Pages.Account
             ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
             ///     directly from your code. This API may change or be removed in future releases.
             /// </summary>
+            [Required(ErrorMessage = "A senha é obrigatória.")]
+            [StringLength(100, MinimumLength = 8, ErrorMessage = "A senha deve ter pelo menos {2} caracteres.")]
             [DataType(DataType.Password)]
-            [Display(Name = "Confirmar senha")]
+            [RegularExpression(@"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^\da-zA-Z]).{8,}$", ErrorMessage = "A senha deve conter pelo menos uma letra maiúscula, uma letra minúscula, um número e um caractere especial.")]
             [Compare("Password", ErrorMessage = "A senha e a confirmação não coincidem.")]
+            [Display(Name = "Repita a senha")]
             public string ConfirmPassword { get; set; }
         }
 
@@ -138,10 +145,10 @@ namespace aluguel.Areas.Identity.Pages.Account
                         pageHandler: null,
                         values: new { area = "Identity", userId = userId, code = code, returnUrl = returnUrl },
                         protocol: Request.Scheme);
-                    await _userManager.AddClaimAsync(user, new Claim("FirstName", user.FirstName));
+                    await _userManager.AddClaimAsync(user, new Claim("Equipe RentAll", user.FirstName));
                     await _userManager.AddClaimAsync(user, new Claim("LastName", user.LastName));
-                    await _emailSender.SendEmailAsync(Input.Email, "Confirme seu email",
-                        $"Confirme sua conta <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicando aqui</a>.");
+                    await _emailSender.SendEmailAsync(Input.Email, "Valide Sua Conta",
+                        $"Valide sua conta RentAll clicando <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>NESTE LINK</a>.");
 
                     if (_userManager.Options.SignIn.RequireConfirmedAccount)
                     {

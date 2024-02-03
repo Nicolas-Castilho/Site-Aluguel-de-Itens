@@ -14,21 +14,31 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://kit.fontawesome.com/f9a4013b2c.js" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="~/css/imgcad.css">
-    <link rel="stylesheet" href="~/css/estrelas.css">
+  
     <link rel="stylesheet" href="~/css/rodape.css" asp-append-version="true" />
-
-    <title>Login Dark/Light Mode</title>
+    <title>Rent All</title>
 </head>
 <body>
+    <div class="form-se">
 
+        <form method="get" action="/Home/VideoGame">
+            <td>
+                <input class="form-control" type="text" placeholder="Pesquisar por..." name="SearchString" value="@ViewData["CurrentFilter"]" aria-label="Search" aria-describedby="btnNavbarSearch" />
+            </td>
+            <td>
+                <input type="submit" value="Buscar" class="btn btn-outline-dark" />
+            </td>
+        </form>
+
+
+    </div>
 
     <div class="l-cards">
         @foreach (var item in Model)
         {
             <div class="c-card">
                 <div class="c-card__image">
-                    <img src="~/imagens/@item.item.imagem1" alt="@item.item.nmitem"
+                    <img class="img" src="~/imagens/@item.item.imagem1" alt="@item.item.nmitem"
                          width="100%"
                          alt="@item.item.nmitem">
                 </div>

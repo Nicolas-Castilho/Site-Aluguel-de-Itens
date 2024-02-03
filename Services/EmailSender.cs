@@ -33,7 +33,7 @@ namespace aluguel.Services
             var msg = new SendGridMessage()
             {
                 From = new EmailAddress("rent.all.bn@gmail.com"),
-                Subject = subject,
+                Subject = "Olá,\r\n\r\nEste é um email email automático, por favor não responda.\r\n\r\nAtenciosamente,\r\n[Equipe RentAll]",
                 PlainTextContent = message,
                 HtmlContent = message
             };

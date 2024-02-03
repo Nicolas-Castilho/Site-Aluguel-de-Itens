@@ -71,6 +71,13 @@ namespace aluguel.Controllers
             var statesList = _context.Tipos.Where(s => s.categoriaid == id).ToList().Select(c => new SelectListItem { Value = c.id.ToString(), Text = c.nmtipo }).ToList();
             return Json(statesList);
         }
+        public IActionResult GetCidades(int id)
+        {
+            //get state list as SelectListItem
+            var statesList = _context.Anuncios.Where(s => s.itemid == id).ToList().Select(c => new SelectListItem { Value = c.id.ToString(), Text = c.Cidade }).ToList();
+            return Json(statesList);
+        }
+
 
         // POST: Anuncios/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.

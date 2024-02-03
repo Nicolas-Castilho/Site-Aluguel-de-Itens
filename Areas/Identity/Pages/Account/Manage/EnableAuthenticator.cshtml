@@ -21,10 +21,13 @@
             </p>
         </li>
         <li>
-            <p> Digitalize o QR Code ou digite esta chave <kbd>@Model.SharedKey</kbd> em seu aplicativo autenticador de dois fatores. Espaços e revestimento não importam.</p>
-            <div class="alert alert-info">Aprenda como <a href="https://go.microsoft.com/fwlink/?Linkid=852423">ativar a geração de código QR</a>.</div>
+
+            <p> Digitalize o QR Code ou digite esta chave:<br /> <kbd style="text-transform: uppercase; font-weight: bold;">@Model.SharedKey</kbd><br /> em seu aplicativo autenticador de dois fatores. Espaços e revestimento não importam.</p>
+
+           <div class="qr">
             <div id="qrCode"></div>
             <div id="qrCodeData" data-url="@Model.AuthenticatorUri"></div>
+            </div>
         </li>
         <li>
             <p>
@@ -49,5 +52,11 @@
 </div>
 
 @section Scripts {
+
+    <script src="/js/qrcode.min.js"></script>
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/qrcode.js"></script>
+    <script src="/js/qr.js"></script>
+
     <partial name="_ValidationScriptsPartial" />
 }

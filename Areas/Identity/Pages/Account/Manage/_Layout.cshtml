@@ -1,5 +1,5 @@
 ﻿@{
-    if (ViewData.TryGetValue("ParentLayout", out var parentLayout) && parentLayout !=  null)
+    if (ViewData.TryGetValue("ParentLayout", out var parentLayout) && parentLayout != null)
     {
         Layout = parentLayout.ToString();
     }
@@ -8,22 +8,42 @@
         Layout = "/Areas/Identity/Pages/_Layout.cshtml";
     }
 }
+<!DOCTYPE html>
+<html lang="pt-br">
 
-<h1>Gerencie sua conta</h1>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="~/css/caditem.css" asp-append-version="true" />
 
-<div>
-    <h2>Alterar as configurações da sua conta</h2>
-    <hr />
-    <div class="row">
-        <div class="col-md-3">
-            <partial name="_ManageNav" />
+    <title>Rent All</title>
+</head>
+<body>
+
+
+
+
+    <div class="card-it">
+
+
+        <h1>Gerencie sua conta</h1>
+
+        <div>
+            <h2>Alterar as configurações da sua conta</h2>
+            <hr />
+            <div class="row">
+                <div class="col-md">
+                    <partial name="_ManageNav" />
+                </div>
+                <div class="col-md">
+                    @RenderBody()
+                </div>
+            </div>
         </div>
-        <div class="col-md-9">
-            @RenderBody()
-        </div>
+
     </div>
-</div>
-
+</body>
+<
 @section Scripts {
     @RenderSection("Scripts", required: false)
 }
